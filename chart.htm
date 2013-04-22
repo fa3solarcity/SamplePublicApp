@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0; user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/swipejs.css" rel="stylesheet" type="text/css" />
+	<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="row-fluid">
+    <strong>
+    <div align="center" style="margin-top:15px;margin-bottom:15px;">
+        <div class="btn-group">
+            <a id="linkDay" class="btn disabled" href="#">Day</a>
+            <a id="linkWeek" class="btn" href="#">Week</a>
+            <a id="linkMonth" class="btn" href="#">Month</a>
+            <a id="linkYear" class="btn" href="#">Year</a>
+        </div>
+    </div>
+    </strong>
+    <div id='sliders'>
+        <div id='daySlider' class='swipe' data-rangeType="Day" style='display:none;'>
+          <ul>
+          </ul>
+        </div>
+        <div id='weekSlider' class='swipe' data-rangeType="Week" style='display:none;'>
+          <ul>
+          </ul>
+        </div>
+        <div id='monthSlider' class='swipe' data-rangeType="Month" style='display:none;'>
+          <ul>
+          </ul>
+        </div>
+        <div id='yearSlider' class='swipe' data-rangeType="Year" style='display:none;'>
+          <ul>
+          </ul>
+        </div>
+    </div>
+    
+    <div style="margin-top:0px;" align="center">
+        <hr style="margin-top:5px;margin-bottom:5px;" />        
+        <a class="btn btn-success" href="referral.html" >Refer a Friend to SolarCity</a><a class="btn btn-success" id='logoutButton' href="#" >Logout</a>        
+    </div>
+    <div align="center" style="margin-top:-5px;">
+            
+    </div>
+
+    <script src="js/vendor/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="js/vendor/date.js" type="text/javascript"></script>    
+    <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/vendor/json2.js" type="text/javascript"></script>
+	<script src="js/vendor/jstorage.js" type="text/javascript"></script>
+    <script src="js/vendor/amplify.min.js" type="text/javascript"></script>
+    <script src="js/requests.js" type="text/javascript"></script>
+    <script src="js/vendor/swipejs/swipe.js" type="text/javascript"></script>
+    <!--<script src="js/vendor/jquery.touchwipe.js" type="text/javascript"></script>-->
+    <script src="js/chart.js" type="text/javascript"></script>
+</body>
+</html>

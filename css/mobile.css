@@ -1,0 +1,136 @@
+﻿body 
+{
+    color: #6A6A6A;
+    cursor: default;
+    font-family:  Arial, Franklin Gothic Medium,Sans Serif;
+    font-size: 15px;
+    padding: 5px;
+}
+
+div.page-header-nav-mobile {
+    background-image: url("../../images/navbar.jpg");
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    border: 0 solid green;
+    height: 67px;
+}
+
+div.page-header-nav-empty-mobile {
+    height: 20px;
+}
+
+div.page-content-mobile .page-content-title-mobile {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.nav-tight 
+{
+   margin-bottom: 0px;
+}
+
+.centered   
+{
+    
+}
+
+div.legendColor-mobile {
+    float: left;
+    height: 10px;
+    margin-right: 2px;
+    overflow: hidden;
+    width: 10px;
+}
+
+td.label span.value-mobile {
+    color: #F2B502;
+    margin-left: 5px;
+}
+
+.label-mobile, .badge-mobile {
+    color: Gray;
+    display: inline-block;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 2px 4px;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.site-selector 
+{
+    width: 100%;   
+}
+
+
+.nav-tabs > li > a {
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    line-height: 20px;
+    padding-bottom: 6px;
+    padding-top: 12px;
+}
+
+.nav-tabs > li > a, .nav-pills > li > a {
+    line-height: 14px;
+    margin-right: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+.autowidth 
+{
+    width:100%;   
+}
+
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.chart-navi
+{
+    margin-top: 5px;  
+    margin-bottom: 10px;  
+}
+
+.chart-navi a
+{
+    color: Green;    
+    font-weight: bold;
+}
+
+.chart-top
+{
+    margin-top: 5px;    
+}
+
+.subNav
+{
+    width: 100%;    
+}
+
+.tighthr
+{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+#spnPrev #spnNext
+{
+    cursor: pointer;
+}
+
+.btn {
+vertical-align: middle;
+}
+
+.padimage
+{
+    margin-top: 150px;
+    margin-bottom: 150px;
+}

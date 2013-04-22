@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SolarCity Mobile</title>
+        <meta name="description" content="">
+
+        <!--<meta name="viewport" content="width=device-width">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0; user-scalable=0;">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!--<link rel="apple-touch-icon" href="../bootstrap/img/touch-icon-iphone.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../bootstrap/img/touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../bootstrap/img/touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../bootstrap/img/touch-icon-ipad-retina.png" />-->
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/mobile.css" rel="stylesheet" type="text/css" />
+    
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body style="margin-left:10px; margin-right:10px">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+      
+    <div class="masthead">
+            <img src="img/header-logo.png" style="margin-top:3px;margin-bottom:3px;width:100.5px;height:33px;" />
+        </div>
+    <div class="row-fluid">
+        <div>
+            <p></p>            
+            <div class="alert alert-block alert-success  fade in">
+            <h4>Refer a Friend to SolarCity</h4>
+		    <p style="font-size:smaller;">Help a friend or family member switch to solar and receive a $400 referral award.</p>
+		    <p style="font-size:smaller;">Simply enter their email address below and we will contact them for a free consultation.</p>                          
+            </div>
+            
+            <!--<form id="form1" runat="server">-->
+            <asp:HiddenField ID="HiddenField1" runat="server" />
+            <div class="row-fluid">
+                
+                 <fieldset>
+                  <input id="to" type="email" class="span12" placeholder="Your Friend's email"></input>
+                  </fieldset>
+            <br />
+            <div align="right">
+            <a id="referralBackButton" href="#" class="btn btn-large" ><i class="icon-arrow-left icon-black"></i> Back</a>    
+            <a id="sendreferral" class="btn btn-large btn-success" href="#" role="button" ><i class="icon-envelope icon-white"></i> Send</a>    
+            </div>
+            <!--</form>     -->   
+        </div>
+
+            <div id="myModal"  class="modal hide fade">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="modalheaderlabel">Sending referral</h3>
+              </div>
+              <div id="modalbody" class="modal-body">
+                <p>                    
+                    <span id="modalbodymessage">Please wait while sending referral.</span>
+                </p>
+                <div id="pbar" class="progress progress-striped active">
+                  <div class="bar" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a  id="closemodalbutton" href="#" class="btn">Close</a>
+              </div>
+            </div>
+
+             <div id="emailerrorrequired"  class="modal hide fade">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="H1">Check email</h3>
+              </div>
+              <div id="Div2" class="modal-body">
+                <p>                    
+                    <span id="Span1">A valid email of your friend is required to send the referral. Please check it and resend.</span>
+                </p>
+              </div>
+            </div>
+
+    </div>
+
+
+
+      <!--  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>-->
+
+<!--        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>-->
+
+       <!-- <script src="js/plugins.js"></script>-->
+        <script src="js/vendor/modernizr-2.6.2.min.js" type="text/javascript"></script>
+        <script src="js/vendor/jquery-1.9.0.min.js" type="text/javascript"></script>
+        <script src="js/vendor/amplify.min.js" type="text/javascript"></script>
+        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/vendor/json2.js" type="text/javascript"></script>
+	    <script src="js/vendor/jstorage.js" type="text/javascript"></script>
+        <script src="js/vendor/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/requests.js" type="text/javascript"></script>
+        <script src="js/referral.js" type="text/javascript"></script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
