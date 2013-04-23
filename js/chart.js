@@ -424,9 +424,7 @@
                             .find('img')
                             .attr('srcloaded', 'true');
                         isLoadedFromStorage = true;
-                    } else {
-                        loadTimeoutDiv($(e2));
-                    }
+                    } 
                 }
                 //otherwise its the last child so its the current date and needs to be fetched from the server first.
                 if (!isLoadedFromStorage) {
