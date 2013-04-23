@@ -358,7 +358,7 @@
 
     initializeDaySlider();
     reInitializeDaySlider();
-    $('#daySlider ul').show();
+    $('#daySlider').show();
     $('#daySlider ul li:nth-child(60)').show();
     loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
     initializeWeekSlider();
