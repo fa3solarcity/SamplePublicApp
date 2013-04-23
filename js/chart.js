@@ -42,13 +42,13 @@
         return 300;
     }
 
-    var initializeDaySlider = function () {
-		var is = '';
-        for (var i = 0; i < 60; i++) {
-            is += "<li style='display:none'><div><span></span><div class='timeoutimage' style='text-align:center;display:none;'><hr class='tighthr'><label style='padding-top:100px;'>Unable to get data from the server. <br/>Please try again later.</label></div><div class='chartdivimage'><hr class='tighthr'><table cellspacing='0' cellpadding='3' border='0' align='center' style='border-color:White;margin-top:0px;' class='chart-energy'><tbody><tr><td class='legend'><div style='background-color:#7DCA65;' class='legendColor-mobile' ></div></td><td style='font-size:x-small' class='label-mobile productionLabel'></td><td class='legend' style='display:none;'><div style='background-color:#2E5FA2;' class='legendColor-mobile'></div></td><td style='font-size:x-small;display:none;' class='label-mobile consumptionLabel'></td></tr></tbody></table><img src='img/loading.gif' data-rangeType='Day' data-srcloaded='false' data-chartdate=''></div></div></li>";
-        }
-		$('#daySlider ul').html(is);
-    };
+    //var initializeDaySlider = function () {
+	//	var is = '';
+    //    for (var i = 0; i < 60; i++) {
+    //        is += "<li style='display:none'><div><span></span><div class='timeoutimage' style='text-align:center;display:none;'><hr class='tighthr'><label style='padding-top:100px;'>Unable to get data from the server. <br/>Please try again later.</label></div><div class='chartdivimage'><hr class='tighthr'><table cellspacing='0' cellpadding='3' border='0' align='center' style='border-color:White;margin-top:0px;' class='chart-energy'><tbody><tr><td class='legend'><div style='background-color:#7DCA65;' class='legendColor-mobile' ></div></td><td style='font-size:x-small' class='label-mobile productionLabel'></td><td class='legend' style='display:none;'><div style='background-color:#2E5FA2;' class='legendColor-mobile'></div></td><td style='font-size:x-small;display:none;' class='label-mobile consumptionLabel'></td></tr></tbody></table><img src='img/loading.gif' data-rangeType='Day' data-srcloaded='false' data-chartdate=''></div></div></li>";
+    //    }
+	//	$('#daySlider ul').html(is);
+    //};
 
     var initializeWeekSlider = function () {
 		var ws = '';
@@ -356,7 +356,7 @@
 		//console.log(lastDate.clearTime().toString());
     }
 
-    initializeDaySlider();
+    //initializeDaySlider();
     reInitializeDaySlider();
     $('#daySlider').show();
     $('#daySlider ul li:nth-child(60)').show();
