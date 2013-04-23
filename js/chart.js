@@ -1,7 +1,5 @@
 (function () {
-    $(document).on("pageinit", function () {
-        $.mobile.loading("show");
-        setTimeout(function () { $.mobile.loading("hide"); }, 2000);
+    $(document).ready(function () {
 
         var chartDataTimeout = 60 * 60 * 1000;
         var currentChartDataRefresh = 14 * 60 * 1000;
@@ -45,13 +43,13 @@
             return 300;
         }
 
-        //var initializeDaySlider = function () {
-        //	var is = '';
-        //    for (var i = 0; i < 60; i++) {
-        //        is += "<li style='display:none'><div><span></span><div class='timeoutimage' style='text-align:center;display:none;'><hr class='tighthr'><label style='padding-top:100px;'>Unable to get data from the server. <br/>Please try again later.</label></div><div class='chartdivimage'><hr class='tighthr'><table cellspacing='0' cellpadding='3' border='0' align='center' style='border-color:White;margin-top:0px;' class='chart-energy'><tbody><tr><td class='legend'><div style='background-color:#7DCA65;' class='legendColor-mobile' ></div></td><td style='font-size:x-small' class='label-mobile productionLabel'></td><td class='legend' style='display:none;'><div style='background-color:#2E5FA2;' class='legendColor-mobile'></div></td><td style='font-size:x-small;display:none;' class='label-mobile consumptionLabel'></td></tr></tbody></table><img src='img/loading.gif' data-rangeType='Day' data-srcloaded='false' data-chartdate=''></div></div></li>";
-        //    }
-        //	$('#daySlider ul').html(is);
-        //};
+        var initializeDaySlider = function () {
+        	var is = '';
+            for (var i = 0; i < 60; i++) {
+                is += "<li style='display:none'><div><span></span><div class='timeoutimage' style='text-align:center;display:none;'><hr class='tighthr'><label style='padding-top:100px;'>Unable to get data from the server. <br/>Please try again later.</label></div><div class='chartdivimage'><hr class='tighthr'><table cellspacing='0' cellpadding='3' border='0' align='center' style='border-color:White;margin-top:0px;' class='chart-energy'><tbody><tr><td class='legend'><div style='background-color:#7DCA65;' class='legendColor-mobile' ></div></td><td style='font-size:x-small' class='label-mobile productionLabel'></td><td class='legend' style='display:none;'><div style='background-color:#2E5FA2;' class='legendColor-mobile'></div></td><td style='font-size:x-small;display:none;' class='label-mobile consumptionLabel'></td></tr></tbody></table><img src='img/loading.gif' data-rangeType='Day' data-srcloaded='false' data-chartdate=''></div></div></li>";
+            }
+        	$('#daySlider ul').html(is);
+        };
 
         var initializeWeekSlider = function () {
             var ws = '';
@@ -90,7 +88,8 @@
             node.find('img').addClass('padimage');
             node.find('img').attr('src', 'img/loading.gif');
             node.find('.productionLabel').text('');
-            node.find('.legend').eq(1).show();
+            node.find('.legend').eq(0).hide();
+            node.find('.legend').eq(1).hide();
             node.find('.consumptionLabel').hide();
             node.find('.consumptionLabel').text('');
         };
@@ -103,7 +102,7 @@
             node.find('img')
                 .attr('src', 'data:image/png;base64,' + data.imageData);
             node.find('.productionLabel').text(data.chartTotalOutputText);
-
+            node.find('.legend').eq(0).show();
             if (data.chartTotalConsumption != '0.0') {
                 node.find('.legend').eq(1).show();
                 node.find('.consumptionLabel').show();
@@ -358,9 +357,8 @@
             //console.log(lastDate.clearTime().toString());
         }
 
-        //initializeDaySlider();
+        initializeDaySlider();
         reInitializeDaySlider();
-        loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
         initializeWeekSlider();
         reInitializeWeekSlider();
         initializeMonthSlider();
@@ -372,22 +370,7 @@
                 .show();
         });
 
-        window.addEventListener("offline", function (e) {
-            isOnline = false;
-        }, false);
-
         var lastRefreshedDate = Date.today();
-        window.addEventListener("online", function (e) {
-            isOnline = true;
-            //let's start refreshing the current graphs since we detected that were online
-            //we need to be able to scope make sure this doesnt get triggered multiple times 
-            if (Date.compare(lastRefreshedDate.addMinutes(10), Date.today()) >= 0) {
-                reinitializeSliders();
-                refreshCurrentValues();
-                lastRefreshedDate = Date.today();
-            }
-        }, false);
-
         setInterval(function () {
             if (window.navigator.onLine) {
                 //triggers every 10 minutes
@@ -397,6 +380,9 @@
         }, (currentChartDataRefresh));
 
         var currentRangeType = "Day";
+
+        loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
+
         var swipeSliders = new Swipe(document.getElementById('sliders'), {
             callback: function (e, e1, e2) {
                 loadingProgressDataDiv($(e2));
@@ -484,6 +470,7 @@
                 }
             }
         });
+
         $('div .btn-group a')
             .click(function (event) {
                 var a = $('#' + event.target.id);
@@ -501,5 +488,21 @@
             $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
             window.location.href = 'index.html';
         });
+
+        window.addEventListener("online", function (e) {
+            isOnline = true;
+            //let's start refreshing the current graphs since we detected that were online
+            //we need to be able to scope make sure this doesnt get triggered multiple times 
+            if (Date.compare(lastRefreshedDate.addMinutes(10), Date.today()) >= 0) {
+                reinitializeSliders();
+                refreshCurrentValues();
+                lastRefreshedDate = Date.today();
+            }
+        }, false);
+
+        window.addEventListener("offline", function (e) {
+            isOnline = false;
+        }, false);
+
     });
 })();
