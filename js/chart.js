@@ -1,4 +1,8 @@
 (function () {
+
+    var chartDataTimeout = 60 * 60 * 1000;
+    var currentChartDataRefresh = 14 * 60 * 1000;
+    
     //for now were flushing the storage.
     var user = $.jStorage.get('username');
     var pass = $.jStorage.get(user.replace("@","_"));
@@ -70,15 +74,6 @@
 		$('#yearSlider ul').html(ys);
     };
 
-    var initialize = function () {
-        initializeDaySlider();
-        $('#daySlider ul').show();
-        $('#daySlider ul li:nth-child(60)').show();
-        initializeWeekSlider();
-        initializeMonthSlider();
-        initializeYearSlider();
-    };
-
     var loadTimeoutDiv = function (node) {
         node.find('.chartdivimage').hide();
         node.find('.timeoutimage').show();
@@ -113,7 +108,7 @@
             node.find('.consumptionLabel').text(data.chartTotalConsumptionText);
         }
     };
-    
+   
     var loadCurrentDay = function (loadDayCallback) {
         var cc = $('#daySlider ul li:nth-child(60) img')
             .attr('data-chartdate');
@@ -135,7 +130,7 @@
                 loadDataDiv($('#daySlider ul li:nth-child(60)'), data);
                 //save to storage for 30 days        	
                 $.jStorage.set(storageKey, data, {
-                    TTL: 60 * 60 * 1000
+                    TTL: chartDataTimeout
                 });
             },
             error: function (data, status) {
@@ -175,7 +170,7 @@
                 loadDataDiv($('#weekSlider ul li:nth-child(52)'), data);
                 //save to storage for 30 days			
                 $.jStorage.set(storageKey, data, {
-                    TTL: 60 * 60 * 1000
+                    TTL: chartDataTimeout
                 });
             },
             error: function (data, status) {
@@ -211,7 +206,7 @@
                 loadDataDiv($('#monthSlider ul li:nth-child(13)'), data);
                 //save to storage
                 $.jStorage.set(storageKey, data, {
-                    TTL: 60 * 60 * 1000
+                    TTL: chartDataTimeout
                 });
             },
             error: function (data, status) {
@@ -247,7 +242,7 @@
                 loadDataDiv($('#yearSlider ul li:nth-child(4)'), data);
                 //save to storage
                 $.jStorage.set(storageKey, data, {
-                    TTL: 60 * 60 * 1000
+                    TTL: chartDataTimeout
                 });
             },
             error: function (data, status) {
@@ -361,11 +356,17 @@
 		//console.log(lastDate.clearTime().toString());
     }
 
-    initialize();
+    initializeDaySlider();
     reInitializeDaySlider();
+    $('#daySlider ul').show();
+    $('#daySlider ul li:nth-child(60)').show();
+    loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
+    initializeWeekSlider();
     reInitializeWeekSlider();
+    initializeMonthSlider();
     reInitializeMonthSlider();
-	reInitializeYearSlider();	
+    initializeYearSlider();
+    reInitializeYearSlider();
     refreshCurrentValues(function () {
         $('#daySlider')
             .show();
@@ -393,7 +394,7 @@
             reinitializeSliders();
             refreshCurrentValues();
         }
-    }, (14*60*1000));
+    }, (currentChartDataRefresh));
 
     var currentRangeType = "Day"; 
     var swipeSliders = new Swipe(document.getElementById('sliders'), {
@@ -449,7 +450,7 @@
                                 .attr('srcloaded', 'true');
                             //save to storage
                             $.jStorage.set(storageKey, data, {
-                                TTL: 60 * 60 * 1000
+                                TTL: chartDataTimeout
                             });
                         },
                         error: function (data, status) {
