@@ -73,6 +73,7 @@
     var initialize = function () {
         initializeDaySlider();
         $('#daySlider ul').show();
+        $('#daySlider ul li:nth-child(60)').show();
         initializeWeekSlider();
         initializeMonthSlider();
         initializeYearSlider();
@@ -96,7 +97,6 @@
         node.find('.consumptionLabel').text('');        
     };
 
-
     var loadDataDiv = function (node, data) {
         node.find('img').removeClass('padimage');
         node.find('.chartdivimage').show();
@@ -114,7 +114,6 @@
         }
     };
     
-
     var loadCurrentDay = function (loadDayCallback) {
         var cc = $('#daySlider ul li:nth-child(60) img')
             .attr('data-chartdate');
