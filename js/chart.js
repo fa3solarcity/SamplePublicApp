@@ -133,6 +133,10 @@
                     $.jStorage.set(storageKey, data, {
                         TTL: chartDataTimeout
                     });
+                    //we're loading the dayslider as soon as it's populated.
+                    if (loadDayCallback != null) {
+                        loadDayCallback();
+                    }
                 },
                 error: function (data, status) {
                     //alert('Error fetching chart.  Try again later.');
@@ -143,12 +147,12 @@
                     } else {
                         loadTimeoutDiv($('#daySlider ul li:nth-child(60)'));
                     }
+                    if (loadDayCallback != null) {
+                        loadDayCallback();
+                    }
                 }
             });
-            //we're loading the dayslider as soon as it's populated.
-            if (loadDayCallback != null) {
-                loadDayCallback();
-            }
+
         };
 
         var loadCurrentWeek = function () {
@@ -366,8 +370,6 @@
         initializeYearSlider();
         reInitializeYearSlider();
         refreshCurrentValues(function () {
-            $('#daySlider')
-                .show();
         });
 
         var lastRefreshedDate = Date.today();
@@ -382,7 +384,10 @@
         var currentRangeType = "Day";
 
         loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
-
+        $('#initialloaddiv').hide();
+        $('#mainbodydiv').show();
+        $('#daySlider')
+            .show();
         var swipeSliders = new Swipe(document.getElementById('sliders'), {
             callback: function (e, e1, e2) {
                 loadingProgressDataDiv($(e2));
