@@ -3,9 +3,13 @@
 
 (function () {
     $(document).ready(function () {
-        console.log($.jStorage.storageAvailable());
-        console.log($.jStorage.storageSize());
-        console.log($.jStorage.currentBackend());
+        var make_base_auth = function (user, password) {
+            var tok = user + ':' + password;
+            var hash = Base64.encode(tok);
+            return "Basic " + hash;
+        };
+
+        
         //prevents safari from opening a new window when site is bookmarked.
         var a = document.getElementsByTagName("a");
         for (var i = 0; i < a.length; i++) {
@@ -70,10 +74,12 @@
 		    return;
 		}
 
+        //used by request.js
+		basicAuth = make_base_auth(e, p)
+
 		var myRequest = amplify.request({
 		    resourceId: 'ajaxLogin',
-		    data: { "email": encodeURIComponent(e), "password": encodeURIComponent(p) },
-		    success: function (data, status) {
+		    success: function (data, xhr) {
 		        if (data.isAuthenticated == true) {
 		            if ($('#rememberMeCheckbox').prop('checked')) {
 		                $.jStorage.set('savedusername', e, { TTL: 30 * 24 * 60 * 60 * 1000 });
@@ -100,19 +106,40 @@
 		            $('#invalidUsernamePasswordModal').modal('show');
 		        }
 		    },
-		    error: function (data, status) {
-		        if (isOnline || window.navigator.onLine) {
-		            $('#invalidUsernamePasswordModal .modal-body p').text('There was a problem connecting to the server');
+		    //error: function (data, status) {
+		    //    if (isOnline || window.navigator.onLine) {
+		    //        $('#invalidUsernamePasswordModal .modal-body p').text('There was a problem connecting to the server');
+		    //        $('#invalidUsernamePasswordModal').modal('show');
+		    //    } else {
+		    //        //let's load from somewhere, for now let's get it from storage and compare
+		    //        var pass = $.jStorage.get(e);
+		    //        if (e && p && p == pass) {
+		    //            window.location.href = "chart.htm";
+		    //        } else {
+		    //            //nothing from storage or doesnt match, lets display the error
+		    //            $('#invalidUsernamePasswordModal .modal-body p').text("You're currently offline right now.  Please try again later.");
+		    //            $('#invalidUsernamePasswordModal').modal('show');
+		    //        }
+		    //    }
+		    //}
+		    error: function (status, xhr) {
+		        if (status === 'fail' && xhr.status === 401) {
+		            $('#invalidUsernamePasswordModal .modal-body p').text('Invalid username or password.');
 		            $('#invalidUsernamePasswordModal').modal('show');
 		        } else {
-		            //let's load from somewhere, for now let's get it from storage and compare
-		            var pass = $.jStorage.get(e);
-		            if (e && p && p == pass) {
-		                window.location.href = "chart.htm";
-		            } else {
-		                //nothing from storage or doesnt match, lets display the error
-		                $('#invalidUsernamePasswordModal .modal-body p').text("You're currently offline right now.  Please try again later.");
+		            if (isOnline || window.navigator.onLine) {
+		                $('#invalidUsernamePasswordModal .modal-body p').text('There was a problem connecting to the server');
 		                $('#invalidUsernamePasswordModal').modal('show');
+		            } else {
+		                //let's load from somewhere, for now let's get it from storage and compare
+		                var pass = $.jStorage.get(e);
+		                if (e && p && p == pass) {
+		                    window.location.href = "chart.htm";
+		                } else {
+		                    //nothing from storage or doesnt match, lets display the error
+		                    $('#invalidUsernamePasswordModal .modal-body p').text("You're currently offline right now.  Please try again later.");
+		                    $('#invalidUsernamePasswordModal').modal('show');
+		                }
 		            }
 		        }
 		    }

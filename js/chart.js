@@ -1,12 +1,22 @@
 (function () {
     $(document).ready(function () {
 
+
+        var make_base_auth = function (user, password) {
+            var tok = user + ':' + password;
+            var hash = Base64.encode(tok);
+            return "Basic " + hash;
+        };
+
         var chartDataTimeout = 60 * 60 * 1000;
         var currentChartDataRefresh = 14 * 60 * 1000;
 
         //for now were flushing the storage.
         var user = $.jStorage.get('username');
         var pass = $.jStorage.get(user.replace("@", "_"));
+
+        //used by request.js
+        basicAuth = make_base_auth(user, pass)
 
         if (user && user.length < 1) {
             window.location.href = "index.html";
@@ -118,8 +128,6 @@
             amplify.request({
                 resourceId: 'ajaxGetPVChart',
                 data: {
-                    email: encodeURIComponent(user),
-                    password: encodeURIComponent(pass),
                     rangeType: "Day",
                     chartDate: cc,
                     chartWidth: getWidth(),
@@ -138,17 +146,22 @@
                         loadDayCallback();
                     }
                 },
-                error: function (data, status) {
-                    //alert('Error fetching chart.  Try again later.');
-                    //load from storage
-                    var storedData = $.jStorage.get(storageKey);
-                    if (storedData) {
-                        loadDataDiv($('#daySlider ul li:nth-child(60)'), storedData);
+                error: function (status, xhr) {
+                    if (status === 'fail' && xhr.status === 401) {
+                        $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
+                        window.location.href = 'index.html';
                     } else {
-                        loadTimeoutDiv($('#daySlider ul li:nth-child(60)'));
-                    }
-                    if (loadDayCallback != null) {
-                        loadDayCallback();
+                        //alert('Error fetching chart.  Try again later.');
+                        //load from storage
+                        var storedData = $.jStorage.get(storageKey);
+                        if (storedData) {
+                            loadDataDiv($('#daySlider ul li:nth-child(60)'), storedData);
+                        } else {
+                            loadTimeoutDiv($('#daySlider ul li:nth-child(60)'));
+                        }
+                        if (loadDayCallback != null) {
+                            loadDayCallback();
+                        }
                     }
                 }
             });
@@ -163,8 +176,6 @@
             amplify.request({
                 resourceId: 'ajaxGetPVChart',
                 data: {
-                    email: encodeURIComponent(user),
-                    password: encodeURIComponent(pass),
                     rangeType: "Week",
                     chartDate: ww,
                     chartWidth: getWidth(),
@@ -178,14 +189,19 @@
                         TTL: chartDataTimeout
                     });
                 },
-                error: function (data, status) {
-                    //alert('Error fetching chart.  Try again later.');
-                    //load from storage
-                    var storedData = $.jStorage.get(storageKey);
-                    if (storedData) {
-                        loadDataDiv($('#weekSlider ul li:nth-child(52)'), storedData);
+                error: function (status, xhr) {
+                    if (status === 'fail' && xhr.status === 401) {
+                        $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
+                        window.location.href = 'index.html';
                     } else {
-                        loadTimeoutDiv($('#weekSlider ul li:nth-child(52)'));
+                        //alert('Error fetching chart.  Try again later.');
+                        //load from storage
+                        var storedData = $.jStorage.get(storageKey);
+                        if (storedData) {
+                            loadDataDiv($('#weekSlider ul li:nth-child(52)'), storedData);
+                        } else {
+                            loadTimeoutDiv($('#weekSlider ul li:nth-child(52)'));
+                        }
                     }
                 }
             });
@@ -199,8 +215,6 @@
             amplify.request({
                 resourceId: 'ajaxGetPVChart',
                 data: {
-                    email: encodeURIComponent(user),
-                    password: encodeURIComponent(pass),
                     rangeType: "Month",
                     chartDate: mm,
                     chartWidth: getWidth(),
@@ -214,14 +228,19 @@
                         TTL: chartDataTimeout
                     });
                 },
-                error: function (data, status) {
-                    //alert('Error fetching chart.  Try again later.');
-                    //load from storage
-                    var storedData = $.jStorage.get(storageKey);
-                    if (storedData) {
-                        loadDataDiv($('#monthSlider ul li:nth-child(13)'), storedData);
+                error: function (status, xhr) {
+                    if (status === 'fail' && xhr.status === 401) {
+                        $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
+                        window.location.href = 'index.html';
                     } else {
-                        loadTimeoutDiv($('#monthSlider ul li:nth-child(13)'));
+                        //alert('Error fetching chart.  Try again later.');
+                        //load from storage
+                        var storedData = $.jStorage.get(storageKey);
+                        if (storedData) {
+                            loadDataDiv($('#monthSlider ul li:nth-child(13)'), storedData);
+                        } else {
+                            loadTimeoutDiv($('#monthSlider ul li:nth-child(13)'));
+                        }
                     }
                 }
             });
@@ -235,8 +254,6 @@
             amplify.request({
                 resourceId: 'ajaxGetPVChart',
                 data: {
-                    email: encodeURIComponent(user),
-                    password: encodeURIComponent(pass),
                     rangeType: "Year",
                     chartDate: yy,
                     chartWidth: getWidth(),
@@ -251,13 +268,18 @@
                     });
                 },
                 error: function (data, status) {
-                    //alert('Error fetching chart.  Try again later.');
-                    //load from storage
-                    var storedData = $.jStorage.get(storageKey);
-                    if (storedData) {
-                        loadDataDiv($('#yearSlider ul li:nth-child(4)'), storedData);
+                    if (status === 'fail' && xhr.status === 401) {
+                        $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
+                        window.location.href = 'index.html';
                     } else {
-                        loadTimeoutDiv($('#yearSlider ul li:nth-child(4)'));
+                        //alert('Error fetching chart.  Try again later.');
+                        //load from storage
+                        var storedData = $.jStorage.get(storageKey);
+                        if (storedData) {
+                            loadDataDiv($('#yearSlider ul li:nth-child(4)'), storedData);
+                        } else {
+                            loadTimeoutDiv($('#yearSlider ul li:nth-child(4)'));
+                        }
                     }
                 }
             });
@@ -383,9 +405,10 @@
 
         var currentRangeType = "Day";
 
-        loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
         $('#initialloaddiv').hide();
         $('#mainbodydiv').show();
+        loadingProgressDataDiv($('#daySlider ul li:nth-child(60)'));
+        
         $('#daySlider')
             .show();
         var swipeSliders = new Swipe(document.getElementById('sliders'), {
@@ -444,19 +467,24 @@
                                     TTL: chartDataTimeout
                                 });
                             },
-                            error: function (data, status) {
-                                //alert('Error fetching chart.  Try again later.');
-                                //load from storage
-                                var storedData = $.jStorage.get(storageKey);
-                                if (storedData) {
-                                    loadDataDiv($(e2), storedData);
+                            error: function (status, xhr) {
+                                if (status === 'fail' && xhr.status === 401) {
+                                    $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
+                                    window.location.href = 'index.html';
                                 } else {
-                                    loadTimeoutDiv($(e2));
+                                    //alert('Error fetching chart.  Try again later.');
+                                    //load from storage
+                                    var storedData = $.jStorage.get(storageKey);
+                                    if (storedData) {
+                                        loadDataDiv($(e2), storedData);
+                                    } else {
+                                        loadTimeoutDiv($(e2));
+                                    }
+                                    // not sure if I should set it to loaded, might want to reload it when possible to load.
+                                    $(e2)
+                                        .find('img')
+                                        .attr('srcloaded', 'true');
                                 }
-                                // not sure if I should set it to loaded, might want to reload it when possible to load.
-                                $(e2)
-                                    .find('img')
-                                    .attr('srcloaded', 'true');
                             }
                         });
                     }
