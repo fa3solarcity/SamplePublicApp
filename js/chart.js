@@ -43,14 +43,12 @@
         }
 
         function getHeight() {
-            //if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
-            //    return document.documentElement.clientHeight - 180;
-            //} else
-
+            if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+                return document.documentElement.clientHeight - 200;
+            } else
                 if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
-                return document.body.clientHeight - 180;
+                return document.body.clientHeight - 200;
             }
-
             // Browser isn't returning its height, pick a reasonable value.
             return 300;
         }
