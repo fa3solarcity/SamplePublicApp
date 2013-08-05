@@ -106,22 +106,6 @@
 		            $('#invalidUsernamePasswordModal').modal('show');
 		        }
 		    },
-		    //error: function (data, status) {
-		    //    if (isOnline || window.navigator.onLine) {
-		    //        $('#invalidUsernamePasswordModal .modal-body p').text('There was a problem connecting to the server');
-		    //        $('#invalidUsernamePasswordModal').modal('show');
-		    //    } else {
-		    //        //let's load from somewhere, for now let's get it from storage and compare
-		    //        var pass = $.jStorage.get(e);
-		    //        if (e && p && p == pass) {
-		    //            window.location.href = "chart.htm";
-		    //        } else {
-		    //            //nothing from storage or doesnt match, lets display the error
-		    //            $('#invalidUsernamePasswordModal .modal-body p').text("You're currently offline right now.  Please try again later.");
-		    //            $('#invalidUsernamePasswordModal').modal('show');
-		    //        }
-		    //    }
-		    //}
 		    error: function (status, xhr) {
 		        if (status === 'fail' && xhr.status === 401) {
 		            $('#invalidUsernamePasswordModal .modal-body p').text('Invalid username or password.');

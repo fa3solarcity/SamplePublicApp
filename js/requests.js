@@ -57,3 +57,21 @@
         cache: false,
         timeout: 5000
     });
+
+    amplify.request.define('ajaxResource', 'ajax', {
+        url: 'https://api.solarcity.com/MySolarcity/api/V1/Message/key={key}',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'GET',
+        cache: false,
+        timeout: 5000
+    });
+
+    amplify.request.define('ajaxResources', 'ajax', {
+        url: 'https://api.solarcity.com/MySolarcity/api/V1/Message/GetValues?key={key}',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: 'GET',
+        cache: false,
+        timeout: 5000
+    });

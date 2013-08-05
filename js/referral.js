@@ -1,5 +1,42 @@
 (function () {
 
+    var getResource = $.jStorage.get('GetResource');
+    if (getResource == undefined) {
+        amplify.request({
+            resourceId: 'ajaxResources',
+            data: {
+                keys: "Resource.MySolarCityMobileApp.ReferralMessageLine1,Resource.MySolarCityMobileApp.ReferralMessageLine2"
+            },
+            success: function (data, status) {
+                $.jStorage.set('ajaxResources', true, { TTL: 1 * 24 * 60 * 60 * 1000 });
+                //console.log(data);
+
+                var length = data.length,
+                element = null;
+                for (var i = 0; i < length; i++) {
+                    element = data[i];
+                    if ($.jStorage.get(element.Key) == undefined) {
+                        $.jStorage.set(element.Key, element.Value, { TTL: 2 * 24 * 60 * 60 * 1000 });
+                    }
+                }
+                setResources();
+            },
+            error: function (status, xhr) {
+                console.log(status);
+            }
+        });
+    }
+    else {
+        setResources();
+    }
+
+    function setResources() {
+        $.each($('.loadMessage'), function (index, value) {
+            $(this).text($.jStorage.get($(this).attr("data-messagekey")))
+        });
+    }
+    
+
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regexS = "[\\?&]" + name + "=([^&#]*)";
