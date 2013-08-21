@@ -1,11 +1,7 @@
 /// <reference path="vendor/require.js" />
 /// <reference path="vendor/amplify.min.js" /
-var basicAuth = '';
-document.addEventListener("deviceready", function () {
-    window.onerror = function (message, url, lineNumber) {
-        alert(message);
-        return true;
-    };
+
+(function () {
     $(document).ready(function () {
         var make_base_auth = function (user, password) {
             var tok = user + ':' + password;
@@ -38,10 +34,12 @@ document.addEventListener("deviceready", function () {
 	    window.addEventListener("online", function (e) {
 	        isOnline = true;
 	    }, false);
+        
         var emailInCookie = $.jStorage.get('savedusername');
         if (emailInCookie) {
             $('#inputEmail').val(emailInCookie);
         }
+	
         amplify.request({
             resourceId: 'ajaxPing'
         });
@@ -60,15 +58,10 @@ document.addEventListener("deviceready", function () {
 		var userloggedout = $.jStorage.get('userloggedout');
 		if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()){
 			//user was logged out automatically and last logged in user matches with saved user
-		    //lets automatically login user		    
-		    alert(savedusername + "-" + lastloggedinuser + "-" + basicAuth + "-" + userloggedout);
-		    window.location.href = 'chart.htm';
-		    //$.mobile.changePage("chart.html");
-		    alert('1');
-		    e.preventDefault();
-		    alert('2');
-		    return;
+			//lets automatically login user
+			window.location.href =  'chart.htm';
 		}
+	
         $('#loginButton').click(function () {	
 		$.jStorage.set('userloggedout', true, {TTL: 30*24*60*60*1000});
 		var e = $('#inputEmail').val();
@@ -138,5 +131,4 @@ document.addEventListener("deviceready", function () {
 
         });
     });
-});
-//})();
+})();

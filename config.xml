@@ -23,7 +23,8 @@
     <preference name="fullscreen"       value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="auto-hide-splash-screen"    value="true" />
-    <preference name="show-splash-screen-spinner" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+
   <access origin="*" />
 	
     <icon src="icon.png" />
@@ -50,6 +51,4 @@
     <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="res/screen/ios/screen-iphone-portrait-568-2x.png" gap:platform="ios"     width="568" height="1136" />
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
-
-    <access origin="*" />
 </widget>
