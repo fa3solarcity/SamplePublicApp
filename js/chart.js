@@ -1,6 +1,6 @@
 (function () {
     $(document).ready(function () {
-
+        alert('4');
 
         var make_base_auth = function (user, password) {
             var tok = user + ':' + password;
