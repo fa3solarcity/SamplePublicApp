@@ -34,12 +34,10 @@
 	    window.addEventListener("online", function (e) {
 	        isOnline = true;
 	    }, false);
-	    alert('1');
         var emailInCookie = $.jStorage.get('savedusername');
         if (emailInCookie) {
             $('#inputEmail').val(emailInCookie);
         }
-        alert('2');
         amplify.request({
             resourceId: 'ajaxPing'
         });
@@ -58,10 +56,11 @@
 		var userloggedout = $.jStorage.get('userloggedout');
 		if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()){
 			//user was logged out automatically and last logged in user matches with saved user
-			//lets automatically login user
+		    //lets automatically login user
+		    alert('redirecting');
 			window.location.href =  'chart.htm';
 		}
-	
+		alert('not redirecting');
         $('#loginButton').click(function () {	
 		$.jStorage.set('userloggedout', true, {TTL: 30*24*60*60*1000});
 		var e = $('#inputEmail').val();
