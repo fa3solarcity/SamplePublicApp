@@ -17,7 +17,7 @@
 
         //used by request.js
         basicAuth = make_base_auth(user, pass)
-
+        alert(basicAuth);
         if (user && user.length < 1) {
             window.location.href = "index.html";
         }
