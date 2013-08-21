@@ -59,10 +59,12 @@
 		if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()){
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user
+		    alert('1');
 		    window.location.href = 'chart.htm';
+		    alert('2');
 		    return;
 		}
-	
+		alert('3');
         $('#loginButton').click(function () {	
 		$.jStorage.set('userloggedout', true, {TTL: 30*24*60*60*1000});
 		var e = $('#inputEmail').val();
