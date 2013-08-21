@@ -58,7 +58,8 @@
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user
 		    alert('redirecting');
-			window.location.href =  'chart.htm';
+		    window.location.href = 'chart.htm';
+		    return;
 		}
 		alert('not redirecting');
         $('#loginButton').click(function () {	
