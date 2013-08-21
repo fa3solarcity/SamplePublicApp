@@ -58,8 +58,8 @@
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user		    
 		    //window.location.href = 'chart.htm';
-		    alert(savedusername + "-" + lastloggedinuser + "-" + userloggedout);
-		    $.mobile.changePage("chart.html");
+		    alert(savedusername + "-" + lastloggedinuser + "-" + basicAuth  + "-" + userloggedout);
+		    //$.mobile.changePage("chart.html");
 		    alert('1');
 		    e.preventDefault();
 		    alert('2');
