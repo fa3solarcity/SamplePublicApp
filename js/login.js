@@ -59,6 +59,7 @@
 		    //lets automatically login user		    
 		    //window.location.href = 'chart.htm';
 		    $.mobile.changePage("chart.html");
+		    e.preventDefault();
 		    return;
 		}
         $('#loginButton').click(function () {	
