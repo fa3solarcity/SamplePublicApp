@@ -58,8 +58,10 @@
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user		    
 		    //window.location.href = 'chart.htm';
+		    alert('changing pages');
 		    $.mobile.changePage("chart.html");
 		    e.preventDefault();
+		    alert(savedusername + "-" + lastloggedinuser + "-" + userloggedout);
 		    return;
 		}
         $('#loginButton').click(function () {	
