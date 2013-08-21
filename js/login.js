@@ -1,5 +1,6 @@
 /// <reference path="vendor/require.js" />
 /// <reference path="vendor/amplify.min.js" /
+var basicAuth;
 
 (function () {
     $(document).ready(function () {
@@ -58,7 +59,8 @@
 		var userloggedout = $.jStorage.get('userloggedout');
 		if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()){
 			//user was logged out automatically and last logged in user matches with saved user
-			//lets automatically login user
+		    //lets automatically login user
+		    alert(savedusername + "-" + lastloggedinuser + "-" + basicAuth);
 			window.location.href =  'chart.htm';
 		}
 	
