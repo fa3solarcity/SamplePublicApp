@@ -61,6 +61,7 @@
 		    //lets automatically login user
 		    alert('1');
 		    window.location.href = 'chart.htm';
+		    navigator.splashscreen.hide();
 		    alert('2');
 		    return;
 		}
