@@ -56,12 +56,11 @@
 		var userloggedout = $.jStorage.get('userloggedout');
 		if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()){
 			//user was logged out automatically and last logged in user matches with saved user
-		    //lets automatically login user
-		    alert('redirecting');
-		    window.location.href = 'chart.htm';
+		    //lets automatically login user		    
+		    //window.location.href = 'chart.htm';
+		    $.mobile.changePage("chart.html");
 		    return;
 		}
-		alert('not redirecting');
         $('#loginButton').click(function () {	
 		$.jStorage.set('userloggedout', true, {TTL: 30*24*60*60*1000});
 		var e = $('#inputEmail').val();
