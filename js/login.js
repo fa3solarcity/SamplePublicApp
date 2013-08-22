@@ -74,7 +74,7 @@ function onDeviceReady() {
 		    //lets automatically login user
 		    alert('1');
 		    try{
-		        navigator.splashscreen.hide();
+		        //navigator.splashscreen.hide();
 		        window.location.href = 'chart.htm';
 		    } catch (err) { alert(":"+err.message); }
 		    alert('2');
