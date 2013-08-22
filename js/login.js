@@ -66,16 +66,12 @@ function onDeviceReady() {
         if (savedusername && lastloggedinuser && userloggedout != true && savedusername.toLowerCase() == lastloggedinuser.toLowerCase()) {
             //user was logged out automatically and last logged in user matches with saved user
             //lets automatically login user
-            alert('1');
             try {
                 //navigator.splashscreen.hide();
                 window.location.href = 'chart.htm';
-            } catch (err) { alert(":" + err.message); }
-            alert('2');
+            } catch (err) {  }
             return;
         }
-        alert(savedusername + "-" + lastloggedinuser);
-        alert('3');
         $('#loginButton').click(function () {
             $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
             var e = $('#inputEmail').val();
@@ -87,10 +83,8 @@ function onDeviceReady() {
                 $('#invalidUsernamePasswordModal').modal('show');
                 return;
             }
-            alert('3.1');
             //used by request.js
             basicAuth = make_base_auth(e, p)
-            alert('3.2');
             var myRequest = amplify.request({
                 resourceId: 'ajaxLogin',
                 success: function (data, xhr) {
@@ -144,7 +138,7 @@ function onDeviceReady() {
             });
 
         });
-    } catch (err) { alert(err.message);}
+    } catch (err) { }
 }
 
 (function () {

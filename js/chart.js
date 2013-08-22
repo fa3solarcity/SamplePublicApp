@@ -1,6 +1,5 @@
 (function () {
     $(document).ready(function () {
-        alert('4');
         setTimeout(function () {
             navigator.splashscreen.hide();
         }, 2000);
@@ -20,7 +19,6 @@
 
         //used by request.js
         basicAuth = make_base_auth(user, pass)
-        alert(basicAuth);
         if (user && user.length < 1) {
             window.location.href = "index.html";
         }
@@ -385,7 +383,6 @@
             }
             //console.log(lastDate.clearTime().toString());
         }
-        alert('5');
         initializeDaySlider();
         reInitializeDaySlider();
         initializeWeekSlider();
@@ -535,7 +532,6 @@
                 lastRefreshedDate = Date.today();
             }
         }, false);
-        alert('6');
         window.addEventListener("offline", function (e) {
             isOnline = false;
         }, false);
