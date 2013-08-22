@@ -22,7 +22,7 @@ function onDeviceReady() {
             return "Basic " + hash;
         };
 
-        
+        onDeviceReady();
         //prevents safari from opening a new window when site is bookmarked.
         var a = document.getElementsByTagName("a");
         for (var i = 0; i < a.length; i++) {
