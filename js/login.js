@@ -73,8 +73,10 @@ function onDeviceReady() {
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user
 		    alert('1');
-		    navigator.splashscreen.hide();
-		    window.location.href = 'chart.htm';
+		    try{
+		        navigator.splashscreen.hide();
+		        window.location.href = 'chart.htm';
+		    } catch (err) { alert(err.message); }
 		    alert('2');
 		    return;
 		}
