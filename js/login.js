@@ -76,7 +76,7 @@ function onDeviceReady() {
 		    try{
 		        navigator.splashscreen.hide();
 		        window.location.href = 'chart.htm';
-		    } catch (err) { alert(err.message); }
+		    } catch (err) { alert(":"+err.message); }
 		    alert('2');
 		    return;
 		}
