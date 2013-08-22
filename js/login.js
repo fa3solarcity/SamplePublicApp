@@ -78,10 +78,10 @@
 		    $('#invalidUsernamePasswordModal').modal('show');
 		    return;
 		}
-
+		alert('3.1');
         //used by request.js
 		basicAuth = make_base_auth(e, p)
-
+		alert('3.2');
 		var myRequest = amplify.request({
 		    resourceId: 'ajaxLogin',
 		    success: function (data, xhr) {
