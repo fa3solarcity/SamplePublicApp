@@ -80,6 +80,7 @@ function onDeviceReady() {
 
             //username and password needs to be filled in.
             if (e.length == 0 || p.length == 0) {
+                $('#loginButton').button('reset');
                 $('#invalidUsernamePasswordModal .modal-body p').text('Username and password is required.');
                 $('#invalidUsernamePasswordModal').modal('show');
                 return;
