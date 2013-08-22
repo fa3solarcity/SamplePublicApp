@@ -82,17 +82,12 @@ function onDeviceReady() {
                 $('#invalidUsernamePasswordModal .modal-body p').text('Username and password is required.');
                 $('#invalidUsernamePasswordModal').modal('show');
                 return;
-            } else {
-                $('#invalidUsernamePasswordModal .modal-body p').text('Logging in...');
-                $('#invalidUsernamePasswordModal').modal('show');
-            }
+            } 
             //used by request.js
             basicAuth = make_base_auth(e, p)
             var myRequest = amplify.request({
                 resourceId: 'ajaxLogin',
                 success: function (data, xhr) {
-                    $('#invalidUsernamePasswordModal .modal-body p').text('Done.');
-                    $('#invalidUsernamePasswordModal').modal('hide');
                     if (data.isAuthenticated == true) {
                         if ($('#rememberMeCheckbox').prop('checked')) {
                             $.jStorage.set('savedusername', e, { TTL: 30 * 24 * 60 * 60 * 1000 });
@@ -120,8 +115,6 @@ function onDeviceReady() {
                     }
                 },
                 error: function (status, xhr) {
-                    $('#invalidUsernamePasswordModal .modal-body p').text('Done.');
-                    $('#invalidUsernamePasswordModal').modal('hide');
                     if (status === 'fail' && xhr.status === 401) {
                         $('#invalidUsernamePasswordModal .modal-body p').text('Invalid username or password.');
                         $('#invalidUsernamePasswordModal').modal('show');
