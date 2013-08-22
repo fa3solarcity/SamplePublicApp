@@ -22,7 +22,7 @@ function onDeviceReady() {
             return "Basic " + hash;
         };
 
-        onDeviceReady();
+        
         //prevents safari from opening a new window when site is bookmarked.
         var a = document.getElementsByTagName("a");
         for (var i = 0; i < a.length; i++) {
@@ -73,8 +73,8 @@ function onDeviceReady() {
 			//user was logged out automatically and last logged in user matches with saved user
 		    //lets automatically login user
 		    alert('1');
-		    window.location.href = 'chart.htm';
 		    navigator.splashscreen.hide();
+		    window.location.href = 'chart.htm';
 		    alert('2');
 		    return;
 		}
