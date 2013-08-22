@@ -10,6 +10,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     try{
         navigator.splashscreen.hide();
+        alert('splash hide');
     } catch (err) { alert(err.message);}
 }
 
