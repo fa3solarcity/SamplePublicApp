@@ -65,6 +65,7 @@
 		    alert('2');
 		    return;
 		}
+		alert(savedusername + "-" + lastloggedinuser);
 		alert('3');
         $('#loginButton').click(function () {	
 		$.jStorage.set('userloggedout', true, {TTL: 30*24*60*60*1000});
