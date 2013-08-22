@@ -1,6 +1,9 @@
 (function () {
     $(document).ready(function () {
         alert('4');
+        setTimeout(function () {
+            navigator.splashscreen.hide();
+        }, 2000);
 
         var make_base_auth = function (user, password) {
             var tok = user + ':' + password;
@@ -382,7 +385,7 @@
             }
             //console.log(lastDate.clearTime().toString());
         }
-
+        alert('5');
         initializeDaySlider();
         reInitializeDaySlider();
         initializeWeekSlider();
@@ -532,7 +535,7 @@
                 lastRefreshedDate = Date.today();
             }
         }, false);
-
+        alert('6');
         window.addEventListener("offline", function (e) {
             isOnline = false;
         }, false);
