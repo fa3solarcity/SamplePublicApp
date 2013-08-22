@@ -73,6 +73,7 @@ function onDeviceReady() {
             return;
         }
         $('#loginButton').click(function () {
+            $('#loginButton').button('loading');
             $.jStorage.set('userloggedout', true, { TTL: 30 * 24 * 60 * 60 * 1000 });
             var e = $('#inputEmail').val();
             var p = $('#inputPassword').val();
@@ -88,6 +89,7 @@ function onDeviceReady() {
             var myRequest = amplify.request({
                 resourceId: 'ajaxLogin',
                 success: function (data, xhr) {
+                    $('#loginButton').button('reset');
                     if (data.isAuthenticated == true) {
                         if ($('#rememberMeCheckbox').prop('checked')) {
                             $.jStorage.set('savedusername', e, { TTL: 30 * 24 * 60 * 60 * 1000 });
@@ -115,6 +117,7 @@ function onDeviceReady() {
                     }
                 },
                 error: function (status, xhr) {
+                    $('#loginButton').button('reset');
                     if (status === 'fail' && xhr.status === 401) {
                         $('#invalidUsernamePasswordModal .modal-body p').text('Invalid username or password.');
                         $('#invalidUsernamePasswordModal').modal('show');
