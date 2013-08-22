@@ -8,7 +8,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // Cordova is ready
 //
 function onDeviceReady() {
-    navigator.splashscreen.hide();
+    try{
+        navigator.splashscreen.hide();
+    } catch (err) { alert(err.message);}
 }
 
 (function () {
