@@ -1,6 +1,16 @@
 /// <reference path="vendor/require.js" />
 /// <reference path="vendor/amplify.min.js" /
 
+// Wait for Cordova to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// Cordova is ready
+//
+function onDeviceReady() {
+    navigator.splashscreen.hide();
+}
+
 (function () {
     $(document).ready(function () {
         var make_base_auth = function (user, password) {
