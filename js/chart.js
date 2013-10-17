@@ -4,6 +4,10 @@
             navigator.splashscreen.hide();
         }, 2000);
 
+        if (parseFloat(window.device.version) === 7.0) {
+            document.body.style.marginTop = "20px";
+        }
+
         var make_base_auth = function (user, password) {
             var tok = user + ':' + password;
             var hash = Base64.encode(tok);

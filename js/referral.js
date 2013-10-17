@@ -1,5 +1,8 @@
 (function () {
 
+    if (parseFloat(window.device.version) === 7.0) {
+        document.body.style.marginTop = "20px";
+    }
     var getResource = $.jStorage.get('GetResource');
     if (getResource == undefined) {
         amplify.request({

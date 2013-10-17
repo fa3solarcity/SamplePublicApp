@@ -16,6 +16,9 @@ function onDeviceReady() {
             return "Basic " + hash;
         };
 
+        if (parseFloat(window.device.version) === 7.0) {
+            document.body.style.marginTop = "20px";
+        }
 
         //prevents safari from opening a new window when site is bookmarked.
         var a = document.getElementsByTagName("a");
